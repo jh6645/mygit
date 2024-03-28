@@ -12,7 +12,7 @@ class DList:
         self.size=0
 
     def size(self): return self.size
-    def is_empty(self):return self.size==0
+    def is_empty(self): return self.size==0
 
     def insert_before(self,p,item):
         t=p.prev

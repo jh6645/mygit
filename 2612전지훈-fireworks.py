@@ -1,36 +1,49 @@
+import turtle
 import turtle as t
-import random
-class Firework:
-    def __init__(self,num=0):
-        self.num=num
+class baduk:
+    def __init__(self,turn=0,x=0,y=0):
+        self.turn=turn
+        self.x=x
+        self.y=y
+        t.ht()
 
-    def DrawStar(self,side):
-        t.right(54)
-        for i in range(5):
-            t.right(72)
-            t.forward(side)
-            t.left(144)
-            t.forward(side)
-
-    def ColorRandomChange(self):
-        r,g,b=0,0,0
-        r=random.random()
-        g=random.random()
-        b=random.random()
-        t.pencolor(r,g,b)
-
-    def FireworkRun(self,num):
-        t.bgcolor("black")
+    def DrawPlate(self):
+        t.bgcolor("tan2")
         t.tracer(0)
-        for i in range(num):
-            self.ColorRandomChange()
-            t.setheading(random.randint(1,360))
-            t.forward(random.randint(1,400))
-            side=random.gauss(4,1)
-            self.DrawStar(side)
-            t.goto(random.gauss(0,4),random.gauss(0,4))
+        for i in range(-9,10):
+            t.pu()
+            t.goto(-270,i*30)
+            t.pd()
+            t.forward(540)
+        t.right(90)
+        for i in range(-9,10):
+            t.pu()
+            t.goto(i*30,270)
+            t.pd()
+            t.forward(540)
         t.update()
-        t.mainloop()
 
-Firework1=Firework()
-Firework1.FireworkRun(400)
+    def PlaceStone(self,x,y):
+        t.pu()
+        for i in range(-9,10):
+            for j in range(-9,10):
+                if 30*i-15<=x<=30*i+15 and 30*j-15<=y<=30*j+15:
+                    t.goto(30*i,30*j)
+        t.pd()
+        t.dot(30,self.DotColor(self.turn))
+        print(self.turn)
+
+    def DotColor(self,turn):
+        if turn%2==0:
+            self.turn+=1
+            return "black"
+        else:
+            self.turn+=1
+            return "white"
+
+screen=turtle.Screen()
+Baduk=baduk()
+Baduk.DrawPlate()
+
+screen.onscreenclick(Baduk.PlaceStone)
+t.mainloop()
