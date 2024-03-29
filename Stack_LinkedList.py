@@ -25,11 +25,13 @@ def pop():
 def print_stack():
     print('top ->\t',end='')
     p=top
+    print('\t',p.item)
+    p=p.next
     while p:
         if p.next!=None:
-            print(p.item,'-> ',end='')
+            print('\t\t',p.item)
         else:
-            print(p.item,end='')
+            print('\t\t',p.item)
         p=p.next
     print()
 
@@ -40,12 +42,12 @@ push('orange')
 push('cherry')
 print('사과, 오렌지, 체리 push 후:\t',end='')
 print_stack()
-print('top 항목: ',end='')
+print('top 항목: ')
 print(peek())
 push('pear')
-print('배 push 후:\t\t',end='')
+print('배 push 후:\t\t')
 print_stack()
 pop()
 push('grape')
-print('pop(), 포도 push 후:\t',end='')
+print('pop(), 포도 push 후:\t')
 print_stack()
