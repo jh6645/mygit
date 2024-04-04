@@ -6,6 +6,7 @@ class baduk:
         self.x=x
         self.y=y
         t.ht()
+        self.stone=[[0 for i in range(30)]for j in range(30)]
 
     def DrawPlate(self):
         t.bgcolor("tan2")
@@ -25,13 +26,19 @@ class baduk:
 
     def PlaceStone(self,x,y):
         t.pu()
+        a=0
+        b=0
         for i in range(-9,10):
             for j in range(-9,10):
                 if 30*i-15<=x<=30*i+15 and 30*j-15<=y<=30*j+15:
                     t.goto(30*i,30*j)
-        t.pd()
-        t.dot(30,self.DotColor(self.turn))
-        print(self.turn)
+                    a=i
+                    b=j
+        if self.stone[a][b]==0:
+            t.pd()
+            t.dot(30,self.DotColor(self.turn))
+            print(self.turn)
+            self.stone[a][b]=1
 
     def DotColor(self,turn):
         if turn%2==0:
