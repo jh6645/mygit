@@ -28,3 +28,6 @@ if __name__ == '__main__':
     t.postorder(t.root)
     print('\n레벨 순회:\t', end='')
     t.levelorder(t.root)
+    print()
+    print('checking about is_equal method : ',end='')
+    print(t.is_equal(t.root,t.root))

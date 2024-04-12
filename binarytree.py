@@ -53,3 +53,10 @@ class BinaryTree:
             return 0
         else:
             return 1+self.size(root.left)+self.size(root.right)
+
+    def is_equal(self,n,m):
+        if n is None or m is None:
+            return n==m
+        if n.item != m.item:
+            return False
+        return (self.is_equal(n.left,m.left) and self.is_equal(n.right,m.right))
